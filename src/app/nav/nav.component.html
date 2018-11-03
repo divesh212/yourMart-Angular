@@ -4,9 +4,17 @@
   <div class="" id="navbarNavAltMarkup">
     <ul class="navbar-nav">
       <li class="nav-item"><a class="nav-link">Home</a></li>
-      <li class="nav-item"><a routerLink='/login' class="nav-link">Login</a></li>
-      <li class="nav-item"><a routerLink='/register' class="nav-link">Register</a></li>
-      <li class="nav-item"><a class="nav-link">Logout</a></li>
+      <li class="nav-item"><a routerLink='/login' class="nav-link" *ngIf="!username">Login</a></li>
+      <li class="nav-item"><a routerLink='/register' class="nav-link" *ngIf="!username">Register</a></li>
+      <li class="nav-item">
+          <a class="nav-link" *ngIf="username" routerLink='/product'>Add Product</a>
+        </li>
+        <li class="nav-item">
+            <a (click)='logout()' class="nav-link" *ngIf="username">Logout</a>
+        </li>
+        <li>
+            {{ username }}
+      </li>
     </ul>
   </div>
 </nav>

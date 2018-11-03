@@ -37,13 +37,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("yahahah");
-    
     if(this.loginForm.valid) {
       console.log(this.loginForm.value);
       
       this.userService.loginUser(this.loginForm.value).subscribe((response : any) => {
         localStorage.setItem("token",response.token);
+        localStorage.setItem("sellerid",response.id);
         this.userService.setUsername(response.ownerName);
         console.log("Token: "+response.token);
         this.router.navigate(['/'])

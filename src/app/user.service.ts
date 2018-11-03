@@ -25,4 +25,15 @@ export class UserService {
    setUsername(username: string) {
     this.currentUsername.next(username)
   }
+
+  addSeller(seller: any, id: number){
+    let url : string = this.url + "/seller"
+    seller.statusId = id;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.post(url,seller,httpOptions)
+  }
 }
