@@ -1,0 +1,53 @@
+<div class="container" style="width:60%">
+  <div *ngIf="productData">
+    <table class="table table-hover table-bordered">
+      <tbody>
+        <tr>
+          <th scope="row">Name</th>
+          <td>{{productData.name}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Code</th>
+          <td>{{productData.code}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">MRP</th>
+          <td>{{productData.mrp}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">SSP</th>
+          <td>{{productData.ssp}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">YMP</th>
+          <td>{{productData.ymp}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Description</th>
+          <td>{{productData.shortDescription}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Instruction</th>
+          <td>{{productData.instruction}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Dimensions</th>
+          <td>{{productData.dimensions}}</td>
+        </tr>
+
+        <tr>
+          <th scope="row">Attributes</th>
+          <td>{{productData.attributes}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>

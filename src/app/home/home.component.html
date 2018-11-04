@@ -46,7 +46,7 @@
             <td>{{ product.ymp }}</td>
             <td>{{ product.category.name }}</td>
             <td>
-                <a href="">View</a>
+                <a [routerLink]="['/details',product.id]">View</a>
             </td>
           </tr>
         </tbody>

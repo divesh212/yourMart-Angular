@@ -42,4 +42,8 @@ export class ProductService {
     return this.http.post(url,product,httpOptions)
   }
 
+  getProduct(productid : any){
+    return this.http.get(this.url + "/product/" + productid)
+  }
+
 }

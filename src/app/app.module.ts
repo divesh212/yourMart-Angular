@@ -12,13 +12,15 @@ import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddImageComponent } from './add-image/add-image.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path : 'product',component:AddProductComponent},
-  {path : 'product/imgae',component:AddImageComponent},
-  {path : 'register', component: RegisterComponent}
+  {path : 'product/image',component:AddImageComponent},
+  {path : 'register', component: RegisterComponent},
+  {path : 'details/:id', component: ProductDetailsComponent}
 ]
 
 @NgModule({
@@ -29,7 +31,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     AddProductComponent,
-    AddImageComponent
+    AddImageComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
