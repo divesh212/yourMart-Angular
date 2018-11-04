@@ -30,6 +30,7 @@ export class ProductService {
     product.seller = {
       id : sellerId
     }
+    product.status = "new"
     product.category = {
       id : category
     }
