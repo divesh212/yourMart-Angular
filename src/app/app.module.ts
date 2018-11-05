@@ -13,12 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AddImageComponent } from './add-image/add-image.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path : 'product',component:AddProductComponent},
-  {path : 'product/image',component:AddImageComponent},
+  {path : 'product/:id/image',component:AddImageComponent},
   {path : 'register', component: RegisterComponent},
   {path : 'details/:id', component: ProductDetailsComponent}
 ]
@@ -37,6 +38,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BsDropdownModule.forRoot(),
+    CarouselModule.forRoot(),
     RouterModule.forRoot(routes),
     ReactiveFormsModule,
     FormsModule,

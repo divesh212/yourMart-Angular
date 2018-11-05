@@ -1,5 +1,16 @@
 <div class="container" style="width:60%">
+
+    <ng-container *ngIf="imagesLoaded">
+
+        <carousel>
+            <slide *ngFor="let image of images">
+              <img [src]="'data:image/jpeg;base64,'+image.image" alt="first slide" style="display: block; width: 100%;">
+            </slide>
+        </carousel>
+      </ng-container>
+
   <div *ngIf="productData">
+    
     <table class="table table-hover table-bordered">
       <tbody>
         <tr>
@@ -51,7 +62,7 @@
           <th scope="row">Status</th>
           <td>{{productData.status}}</td>
         </tr>
-        
+
       </tbody>
     </table>
   </div>
