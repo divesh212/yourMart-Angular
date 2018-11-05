@@ -3,15 +3,18 @@ import { UserService } from '../user.service';
 import { Router } from '../../../node_modules/@angular/router';
 import { Validators, FormGroup, FormBuilder } from '../../../node_modules/@angular/forms';
 import { ProductService } from '../product.service';
- @Component({
+@Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  
+
   productForm: FormGroup
-   constructor(private formBuilder: FormBuilder, private productService: ProductService,
+  token: string
+  categories: any
+
+  constructor(private formBuilder: FormBuilder, private productService: ProductService,
     private router: Router) {
     this.productForm = this.formBuilder.group({
       code: ['', Validators.compose([Validators.required])],
@@ -27,19 +30,24 @@ export class AddProductComponent implements OnInit {
       attributes: ['', Validators.compose([Validators.required])]
     });
   }
-   ngOnInit() {
+  ngOnInit() {
+    this.token = localStorage.getItem('token')
+
+    this.productService.getCategories().subscribe((categoies) => {
+      this.categories = categoies
+    })
   }
-   saveProduct() {
-    if(this.productForm.valid) {
+  saveProduct() {
+    if (this.productForm.valid) {
       console.log(this.productForm.value);
       let sellerid = localStorage.getItem("sellerid")
-      this.productService.addProduct(this.productForm.value,sellerid).subscribe((response : any) => {
+      this.productService.addProduct(this.productForm.value, sellerid).subscribe((response: any) => {
         this.router.navigate(['/product/image'])
-        
-      },(error) => {
+
+      }, (error) => {
         console.log(error);
-        
+
       })
     }
   }
- }
+}

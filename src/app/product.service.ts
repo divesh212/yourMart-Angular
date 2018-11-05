@@ -47,4 +47,26 @@ export class ProductService {
     return this.http.get(this.url + "/product/" + productid)
   }
 
+  getProductById(productId) {
+    const url = this.url + "/product/"+productId;
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'authentication' : localStorage.getItem('token'),
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get(url,httpOptions)
+  }
+
+  getCategories() {
+    let url = this.url + "/category"
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get(url,httpOptions)
+  }
+
 }
