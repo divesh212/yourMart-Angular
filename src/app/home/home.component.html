@@ -53,22 +53,35 @@
     </div>
     <div class="col-md-4">
       <div style="padding-top:30px;padding-left:30px;">
-        <form>
 
-          <div class="row">
-            <div class="col-md-6">
-              <h5>Choose status:</h5>
-              <input type="radio" name="status" value="NEW_CHECKED" />NEW
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Choose status:</h5>
+            <!-- <input type="radio" name="status" value="NEW_CHECKED" />NEW
               <br />
               <input type="radio" name="status" value="APPROVED" />APPROVED
               <br />
               <input type="radio" name="status" value="REVIEW" />REVIEW
               <br />
-              <input type="radio" name="status" value="REJECTED" />REJECTED
+              <input type="radio" name="status" value="REJECTED" />REJECTED -->
+            <div class="btn-group" dropdown>
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-block btn-outline-secondary dropdown-toggle"
+                aria-controls="dropdown-basic" aria-expanded="false" aria-haspopup="true">
+              </button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" (click)="setStatus('new',1)">New</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setStatus('approved',2)">Approved</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setStatus('rejected',3)">Rejected</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setStatus('review',4)">Review</a></li>
+              </ul>
             </div>
-            <div class="col-md-6">
-              <h5>Sort By:</h5>
-
+          </div>
+          <div class="col-md-6">
+            <h5>Sort By:</h5>
+            <!-- 
               <input type="radio" name="sortBy" value="mrp">MRP
               <br />
               <input type="radio" name="sortBy" value="ssp" />SSP
@@ -76,31 +89,53 @@
               <input type="radio" name="sortBy" value="ymp" />YMP
               <br />
               <input type="radio" name="sortBy" value="code" />Code
-              <br />
+              <br /> -->
+            <div class="btn-group" dropdown>
+              <button id="button-basic" dropdownToggle type="button" class="btn btn-block btn-outline-secondary dropdown-toggle"
+                aria-controls="dropdown-basic" aria-expanded="false" aria-haspopup="true">
+              </button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" (click)="setSortBy('code')">Code</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setSortBy('name')">Name</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setSortBy('mrp')">MRP</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setSortBy('ssp')">SSP</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="setSortBy('ymp')">YMP</a></li>
+              </ul>
             </div>
-
           </div>
 
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Category</label>
-            </div>
-            <select class="custom-select" id="inputGroupSelect01" name="category" *ngFor="let category of categories">
-              <option value="{{ category.name }}">{{ category.name }}</option>
-            </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle type="button" class="btn btn-block btn-outline-secondary dropdown-toggle"
+              aria-controls="dropdown-basic" aria-expanded="false" aria-haspopup="true">
+              {{ selectedCategory.toUpperCase() }} <span class="caret"></span>
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <div *ngFor="let category of categories">
+                <li role="menuitem"><a class="dropdown-item" (click)="setCategory(category)">{{category.name}}</a></li>
+                <li class="divider dropdown-divider"></li>
+              </div>
+            </ul>
           </div>
-          <input type="submit" class="btn" value="submit">
-        </form>
+        </div>
+        <button type="submit" class="btn" (click)="applyAll(searchQuery.value)"> Apply </button>
+
       </div>
     </div>
   </div>
 </div>
 
 <div class="container" *ngIf="!token">
-    <div class="text-center message">
-      You aren't logged in. <br>
-      Please
-      <a routerLink="/login">signin</a> or
-      <a routerLink="/register">signup</a> to access PMP.
-    </div>
+  <div class="text-center message">
+    You aren't logged in. <br>
+    Please
+    <a routerLink="/login">signin</a> or
+    <a routerLink="/register">signup</a> to access PMP.
   </div>
+</div>

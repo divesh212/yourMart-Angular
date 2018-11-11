@@ -11,8 +11,14 @@ export class HomeComponent implements OnInit {
 
   products : any
   dropdownHeading : string = 'name'
+  searchBy : string
   token : string 
   categories : any
+  status: string
+  statusId: number = 0
+  sortBy: string
+  selectedCategory: string = 'category'
+  selectedCategoryId: number
   constructor(private productService: ProductService,  private userService : UserService) { }
 
   ngOnInit() {
@@ -36,6 +42,33 @@ export class HomeComponent implements OnInit {
 
   setSearchKey(key) {
     this.dropdownHeading = key
+  }
+
+  setStatus(status, statusId) {
+    this.status = status;
+    this.statusId = statusId
+  }
+
+  setSortBy(sortBy) {
+    this.sortBy = sortBy;
+  }
+
+  setCategory(category) {
+    this.selectedCategory = category.name
+    this.selectedCategoryId = category.id
+    console.log("category set");
+  }
+
+  applyAll(searchValue){
+    console.log(this.searchBy)
+    console.log(searchValue);
+    console.log(this.status)
+    console.log(this.statusId)
+    console.log(this.sortBy);
+    console.log(this.selectedCategoryId)
+    this.productService.getProducts(this.searchBy,searchValue,this.sortBy,this.statusId,this.selectedCategoryId).subscribe( products => {
+      this.products = products
+    })
   }
 
 }
